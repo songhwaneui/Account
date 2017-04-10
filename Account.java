@@ -1,5 +1,5 @@
 
-public abstract class Account {
+public abstract class Account implements Valuable {
 	
 	protected double balance;
 	
@@ -28,5 +28,8 @@ public abstract class Account {
 	public abstract double getWithdrawableAccount();
 	
 	public abstract void passTime(int time);
+	
+	
+	
 	
 }

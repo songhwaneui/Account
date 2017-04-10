@@ -4,7 +4,7 @@ public class checkingAccount extends Account{
 	private double deposit_limit;
 	private double interest;
 	private double loan_interest;
-	static double result;
+	double result;
 	
 	checkingAccount(double balance,double deposit_limit, double interest, double loan_interest){
 		super(balance);
@@ -15,7 +15,7 @@ public class checkingAccount extends Account{
 	}
 
 	@Override
-	double debit(double m2)
+	double debit(double m2) 
 	{
 		if(m2>balance+deposit_limit)
 		{
@@ -76,6 +76,21 @@ public class checkingAccount extends Account{
 			return balance;
 		}
 		
+		
+	}
+	
+	@Override
+	public double EstimateValue(int month){
+
+		double bok_loan_interest = Math.pow(1+loan_interest,month);
+		//복리이자 = 원금*Math.pow(1+interest,time)
+
+		 balance = balance*bok_loan_interest;
+		return balance;
+	}
+	
+	public String toString(){
+		return String.format("CheckingAccout_Balance: 100.00");
 		
 	}
 	

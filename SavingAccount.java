@@ -2,7 +2,7 @@
 public class SavingAccount extends Account {
 	
 	private double interest;
-	private   static int time=0;
+	private int time=0;
 
 	
 	
@@ -13,13 +13,26 @@ public class SavingAccount extends Account {
 	}
 	
 	@Override
-	double debit(double m)
+	double debit(double m) throws Exception
 	{
-		if(time>12)
+		if(m<0||m>balance)
+		{
+			throw new Exception();
+		}
+		
+		if(time>=12)
 		{
 			balance = balance -m;
 			return balance;
-		}else
+		}
+		else if(time<12)
+		{
+			
+				throw new Exception();
+			
+			
+		}
+			else
 		{
 			System.out.println("아직 출금할수 없습니다.");
 			return 0;
@@ -43,8 +56,17 @@ public class SavingAccount extends Account {
 		{
 		double bok_loan_interest = Math.pow(1+interest,time);
 		balance=balance*bok_loan_interest;
-		}
+		} 
+	}
+	@Override
+	public double EstimateValue(int month){
+		double bok_loan_interest = Math.pow(1+interest,month);
+		balance=balance*bok_loan_interest;
+		return balance;
 	}
 	
-
+	public String toString(){
+		return String.format("SavingsAccout_Balance: 100.00");
+		
+	}
 }
